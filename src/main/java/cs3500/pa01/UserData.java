@@ -1,27 +1,39 @@
 package cs3500.pa01;
 
+/**
+ * Represents a user's data
+ */
 public class UserData {
   // how will I store UserData in my .sr file?
   // { User Stats }
   // read? write back to file?
   int answered;
+  int easyToHard;
+  int hardToEasy;
   int hardQs;
   int easyQs;
-  int hardToEasy;
-  int easyToHard;
-  public UserData(int a, int h, int e, int hte, int eth) {
-    answered = a;
-    hardQs = h;
-    easyQs = e;
-    hardToEasy = hte;
-    easyToHard = eth;
+
+  /**
+   * Constructor
+   */
+  public UserData(int answered, int easyToHard, int hardToEasy, int hardQs, int easyQs) {
+    this.answered = answered;
+    this.easyToHard = easyToHard;
+    this.hardToEasy = hardToEasy;
+    this.hardQs = hardQs;
+    this.easyQs = easyQs;
   }
 
+  /**
+   * Converts a user's data back to a string to write to the .sr file
+   *
+   * @return a string of the data
+   */
   public String toString() {
-    return "> Questions answered: " + answered
-        + "> Questions switched from hard to easy: " + hardToEasy
-        + "> Questions switched from easy to hard: " + easyToHard
-        + "> Hard questions: " + hardQs
+    return "> Questions answered: " + answered + "\n"
+        + "> Questions switched from easy to hard: " + easyToHard + "\n"
+        + "> Questions switched from hard to easy: " + hardToEasy + "\n"
+        + "> Hard questions: " + hardQs + "\n"
         + "> Easy questions: " + easyQs;
   }
 }

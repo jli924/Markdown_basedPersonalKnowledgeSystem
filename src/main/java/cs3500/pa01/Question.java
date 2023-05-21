@@ -1,14 +1,21 @@
 package cs3500.pa01;
 
+/**
+ * To represent a question
+ */
 public class Question {
   String question;
   String answer;
-  // (H) or (E)
+  // difficulty is (H) or (E)
   String difficulty;
   boolean hard;
-  public Question(String q, String a, boolean h) {
-    question = q;
-    answer = a;
-    hard = h;
+
+  /**
+   * Constructor
+   */
+  public Question(String question, String answer, boolean hard) {
+    this.question = question;
+    this.answer = answer;
+    this.hard = hard;
   }
 }

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * This class is to test that one method and keep it
  * separate from PA01 tests, so you don't get confused!
  */
-public class FileFormatterPA02Test {
+public class FileFormatterPa02Test {
   FileFormatter fileFormatter = new FileFormatter();
   String myQuestion = "[[What is my name? ::: Jamie Li]]";
   String easyQuestion = "[[What color is the sky? ::: Blue (E)]]";
@@ -31,8 +31,8 @@ public class FileFormatterPA02Test {
   public void testExtractQuestion() {
     fileFormatter.extractQuestion(myQuestion);
     fileFormatter.extractQuestion(easyQuestion);
-    assertEquals(myName.question, fileFormatter.quesSet.hardquestions.get(0).question);
-    assertEquals(colorOfSky.question, fileFormatter.quesSet.hardquestions.get(1).question);
+    assertEquals(myName.question, fileFormatter.quesSet.questions.get(0).question);
+    assertEquals(colorOfSky.question, fileFormatter.quesSet.questions.get(1).question);
   }
 
   @Test
