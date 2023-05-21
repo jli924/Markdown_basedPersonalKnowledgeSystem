@@ -21,6 +21,11 @@ public class FileFormatterPA02Test {
   String easyQuestion = "[[What color is the sky? ::: Blue (E)]]";
   Question myName = new Question("What is my name? ", "Jamie Li", true);
   Question colorOfSky = new Question("What color is the sky? ", "Blue", false);
+  String answered = "> Questions answered: 7";
+  String hardToEasy = "> Questions switched from hard to easy: 4";
+  String easyToHard = "> Questions switched from easy to hard: 1";
+  String hardQs = "> Hard questions: 10";
+  String easyQs = "> Easy questions: 3";
 
   @Test
   public void testExtractQuestion() {
@@ -28,5 +33,19 @@ public class FileFormatterPA02Test {
     fileFormatter.extractQuestion(easyQuestion);
     assertEquals(myName.question, fileFormatter.quesSet.hardquestions.get(0).question);
     assertEquals(colorOfSky.question, fileFormatter.quesSet.hardquestions.get(1).question);
+  }
+
+  @Test
+  public void testSetUserData() {
+    fileFormatter.setUserData(answered);
+    fileFormatter.setUserData(hardToEasy);
+    fileFormatter.setUserData(easyToHard);
+    fileFormatter.setUserData(hardQs);
+    fileFormatter.setUserData(easyQs);
+    assertEquals(fileFormatter.userData.answered, 7);
+    assertEquals(fileFormatter.userData.hardToEasy, 4);
+    assertEquals(fileFormatter.userData.easyToHard, 1);
+    assertEquals(fileFormatter.userData.hardQs, 10);
+    assertEquals(fileFormatter.userData.easyQs, 3);
   }
 }
