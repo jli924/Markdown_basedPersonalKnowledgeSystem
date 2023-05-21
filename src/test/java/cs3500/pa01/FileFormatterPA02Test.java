@@ -3,8 +3,6 @@ package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -20,11 +18,15 @@ import org.junit.jupiter.api.Test;
 public class FileFormatterPA02Test {
   FileFormatter fileFormatter = new FileFormatter();
   String myQuestion = "[[What is my name? ::: Jamie Li]]";
+  String easyQuestion = "[[What color is the sky? ::: Blue (E)]]";
   Question myName = new Question("What is my name? ", "Jamie Li", true);
+  Question colorOfSky = new Question("What color is the sky? ", "Blue", false);
 
   @Test
   public void testExtractQuestion() {
     fileFormatter.extractQuestion(myQuestion);
+    fileFormatter.extractQuestion(easyQuestion);
     assertEquals(myName.question, fileFormatter.quesSet.hardquestions.get(0).question);
+    assertEquals(colorOfSky.question, fileFormatter.quesSet.hardquestions.get(1).question);
   }
 }
