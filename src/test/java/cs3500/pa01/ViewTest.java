@@ -2,6 +2,7 @@ package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import cs3500.pa01.Model.Question;
 import cs3500.pa01.Model.UserData;
 import cs3500.pa01.View.View;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,10 @@ import org.junit.jupiter.api.Test;
  * Tests for the View class
  */
 public class ViewTest {
-  View view = new View(System.out);
+  Appendable appendable = new StringBuilder();
+  View view = new View(appendable);
+  Question question =
+      new Question("What is the color of the sky? ", "Blue.", true);
   UserData stats = new UserData(1, 2, 3, 4, 5);
   String welcomeUser = "Welcome!!"
       + "\n"
@@ -25,12 +29,24 @@ public class ViewTest {
       + "Hard questions: " + 4  + "\n"
       + "Easy questions: " + 5 + "\n";
 
+  String askForFilePath = "Please provide a valid file path.";
+
+  /**
+   * Tests for the welcomeUser method in View
+   */
+  @Test
+  public void testProvideFile() {
+    view.askForFilePath();
+    assertEquals(askForFilePath, view.output.toString());
+  }
+
   /**
    * Tests for the welcomeUser method in View
    */
   @Test
   public void testWelcomeUser() {
-    assertEquals(view.welcomeUser(), welcomeUser);
+    view.welcomeUser();
+    assertEquals(welcomeUser, view.output.toString());
   }
 
   /**
@@ -38,7 +54,17 @@ public class ViewTest {
    */
   @Test
   public void testShowOptions() {
-    assertEquals(view.showOptions(), options);
+    view.showOptions();
+    assertEquals(options, view.output.toString());
+  }
+
+  /**
+   * Tests for the showAnswer method in View
+   */
+  @Test
+  public void testShowAnswer() {
+    view.showAnswer(question);
+    assertEquals(question.answer, view.output.toString());
   }
 
   /**
@@ -46,6 +72,7 @@ public class ViewTest {
    */
   @Test
   public void testShowStats() {
-    assertEquals(view.showStats(stats), showStats);
+    view.showStats(stats);
+    assertEquals(showStats, view.output.toString());
   }
 }

@@ -2,7 +2,6 @@ package cs3500.pa01.Controller;
 
 import cs3500.pa01.Model.Model;
 import cs3500.pa01.View.View;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
@@ -33,14 +32,6 @@ public class Controller {
     this.output = new OutputStreamWriter(System.out);
   }
 
-  public void welcome() {
-    try {
-      output.append(view.welcomeUser());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   public void extractData(String path) {
     Path questionBank = Paths.get(path);
     model.organizeData(questionBank.toFile());
@@ -56,12 +47,12 @@ public class Controller {
   public void run() {
     Scanner sc = new Scanner(this.input);
     // ask user to provide file path: exception will be thrown if path is not valid
-    view.provideFile();
+    view.askForFilePath();
     // read file
     // is this how to properly read user input?
     extractData(sc.next());
     // after user provides valid file, welcome them & ask for # of questions
-    welcome();
+    view.welcomeUser();
     questionsToStudy(sc.next());
   }
 }
