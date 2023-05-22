@@ -2,13 +2,15 @@ package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import cs3500.pa01.Model.UserData;
+import cs3500.pa01.View.View;
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the View class
  */
 public class ViewTest {
-  View view = new View();
+  View view = new View(System.out);
   UserData stats = new UserData(1, 2, 3, 4, 5);
   String welcomeUser = "Welcome!!"
       + "\n"

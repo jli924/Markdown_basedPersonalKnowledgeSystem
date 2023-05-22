@@ -1,11 +1,11 @@
-package cs3500.pa01;
+package cs3500.pa01.Model;
 
 /**
  * To represent a question
  */
 public class Question {
-  String question;
-  String answer;
+  public String question;
+  public String answer;
   // difficulty is (H) or (E)
   String difficulty;
   boolean hard;

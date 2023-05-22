@@ -1,4 +1,4 @@
-package cs3500.pa01;
+package cs3500.pa01.Model;
 
 /**
  * Represents a user's data
@@ -7,11 +7,11 @@ public class UserData {
   // how will I store UserData in my .sr file?
   // { User Stats }
   // read? write back to file?
-  int answered;
-  int easyToHard;
-  int hardToEasy;
-  int hardQs;
-  int easyQs;
+  public int answered;
+  public int easyToHard;
+  public int hardToEasy;
+  public int hardQs;
+  public int easyQs;
 
   /**
    * Constructor

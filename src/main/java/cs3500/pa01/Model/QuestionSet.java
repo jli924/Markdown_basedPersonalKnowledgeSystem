@@ -1,5 +1,6 @@
-package cs3500.pa01;
+package cs3500.pa01.Model;
 
+import cs3500.pa01.Model.Question;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -8,10 +9,10 @@ import java.util.Random;
  * To represent a set of questions
  */
 public class QuestionSet {
-  ArrayList<Question> questions = new ArrayList<>();
+  public ArrayList<Question> questions = new ArrayList<>();
   Question curQuestion;
   Random rand = new Random();
-  int questionsToStudy;
+  public int questionsToStudy;
   int indexOfQuestion = 0;
 
   /**

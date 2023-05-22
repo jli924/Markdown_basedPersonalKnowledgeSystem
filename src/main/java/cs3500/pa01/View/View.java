@@ -1,16 +1,21 @@
-package cs3500.pa01;
+package cs3500.pa01.View;
+
+import cs3500.pa01.Model.Question;
+import cs3500.pa01.Model.QuestionSet;
+import cs3500.pa01.Model.UserData;
 
 /**
  * Handles what to show the user
  */
 public class View {
   QuestionSet quesSet = new QuestionSet();
+  Appendable output;
 
   /**
    * Constructor
    */
-  public View() {
-
+  public View(Appendable output) {
+    this.output = output;
   }
 
   public String provideFile() {
@@ -23,6 +28,7 @@ public class View {
    * @return a string, welcoming the user
    */
   public String welcomeUser() {
+    //output.append()
      return "Welcome!!"
         + "\n"
         + "How many questions would you like to study today?";

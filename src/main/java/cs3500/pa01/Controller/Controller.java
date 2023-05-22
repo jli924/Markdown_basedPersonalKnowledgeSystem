@@ -1,11 +1,12 @@
-package cs3500.pa01;
+package cs3500.pa01.Controller;
 
+import cs3500.pa01.Model.Model;
+import cs3500.pa01.View.View;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Scanner;
  */
 public class Controller {
   Model model = new Model();
-  View view = new View();
+  View view = new View(System.out);
   int questionsToStudy;
   final Readable input;
   final Appendable output;
@@ -29,7 +30,7 @@ public class Controller {
   public Controller(int questionsToStudy, Readable input, Appendable output) {
     this.questionsToStudy = questionsToStudy;
     this.input = new InputStreamReader(System.in);
-    this.output = Objects.requireNonNull(output);
+    this.output = new OutputStreamWriter(System.out);
   }
 
   public void welcome() {
@@ -50,7 +51,7 @@ public class Controller {
   }
 
   /**
-   * To run the
+   * To start the study session
    */
   public void run() {
     Scanner sc = new Scanner(this.input);
