@@ -13,34 +13,19 @@ public class View {
 
   }
 
+  public String provideFile() {
+    return "Please provide a valid file path.";
+  }
+
   /**
    * Welcomes the user
    *
    * @return a string, welcoming the user
    */
   public String welcomeUser() {
-    return "Welcome!!"
+     return "Welcome!!"
         + "\n"
         + "How many questions would you like to study today?";
-  }
-
-  /**
-   * Shows the user the next question
-   *
-   * @param questionsToStudy the number of questions the user wants to study
-   *
-   * @return the question, as a string
-   */
-  // REMEMBER TO DECREASE QUESTIONS TO STUDY!!!
-  public String showNextQuestion(int questionsToStudy) {
-    int questionsInBank = quesSet.questions.size();
-    if (questionsToStudy > questionsInBank) {
-      questionsToStudy = questionsInBank;
-    }
-    // returning the "question" part of the Question object,
-    // a string (see class Question for more)
-    String question = (quesSet.nextQuestion(questionsToStudy)).question;
-    return question;
   }
 
   /**

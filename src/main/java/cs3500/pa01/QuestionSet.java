@@ -9,7 +9,10 @@ import java.util.Random;
  */
 public class QuestionSet {
   ArrayList<Question> questions = new ArrayList<>();
+  Question curQuestion;
   Random rand = new Random();
+  int questionsToStudy;
+  int indexOfQuestion = 0;
 
   /**
    * Constructor
@@ -44,12 +47,16 @@ public class QuestionSet {
   /**
    * Gets the next question
    *
-   * @param idx the index of the question to get
-   *
    * @return the question at that index
    */
-  public Question nextQuestion(int idx) {
-    return questions.get(idx);
+  public void nextQuestion() {
+    if (questionsToStudy > questions.size()) {
+      questionsToStudy = questions.size();
+    }
+    if (indexOfQuestion <= questionsToStudy) {
+      curQuestion = questions.get(indexOfQuestion);
+      indexOfQuestion++;
+    }
   }
 
   /**

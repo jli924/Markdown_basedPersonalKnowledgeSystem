@@ -23,16 +23,25 @@ public class ViewTest {
       + "Hard questions: " + 4  + "\n"
       + "Easy questions: " + 5 + "\n";
 
+  /**
+   * Tests for the welcomeUser method in View
+   */
   @Test
   public void testWelcomeUser() {
     assertEquals(view.welcomeUser(), welcomeUser);
   }
 
+  /**
+   * Tests for the showOptions method in View
+   */
   @Test
   public void testShowOptions() {
     assertEquals(view.showOptions(), options);
   }
 
+  /**
+   * Tests for the showStats method in View
+   */
   @Test
   public void testShowStats() {
     assertEquals(view.showStats(stats), showStats);

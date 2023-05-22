@@ -15,6 +15,10 @@ public class UserDataTest {
       + "> Hard questions: " + 4 + "\n"
       + "> Easy questions: " + 5;
 
+
+  /**
+   * Tests for the toString method in UserData
+   */
   @Test
   public void testToString() {
     assertEquals(userStats, stats.toString());

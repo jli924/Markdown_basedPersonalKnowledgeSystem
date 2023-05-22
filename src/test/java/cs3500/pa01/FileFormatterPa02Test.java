@@ -27,6 +27,10 @@ public class FileFormatterPa02Test {
   String hardQs = "> Hard questions: 10";
   String easyQs = "> Easy questions: 3";
 
+
+  /**
+   * Tests for the extractQuestion method in FileFormatter
+   */
   @Test
   public void testExtractQuestion() {
     fileFormatter.extractQuestion(myQuestion);
@@ -35,6 +39,9 @@ public class FileFormatterPa02Test {
     assertEquals(colorOfSky.question, fileFormatter.quesSet.questions.get(1).question);
   }
 
+  /**
+   * Tests for the setUserData method in FileFormatter
+   */
   @Test
   public void testSetUserData() {
     fileFormatter.setUserData(answered);
