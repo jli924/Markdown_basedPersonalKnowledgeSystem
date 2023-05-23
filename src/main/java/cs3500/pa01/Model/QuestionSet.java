@@ -21,11 +21,39 @@ public class QuestionSet {
     this.questions = questions;
   }
 
+  public int numOfEasy() {
+    int count = 0;
+    for (int i = 0; i < questions.size(); i++) {
+      if (!questions.get(i).hard) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  public int numOfHard() {
+    int count = 0;
+    for (int i = 0; i < questions.size(); i++) {
+      if (questions.get(i).hard) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   /**
    * Constructor with seeded random
    */
   public QuestionSet(Random r) {
     rand = r;
+  }
+
+  public void setQuestionToHard() {
+    curQuestion.setToHard();
+  }
+
+  public void setQuestionToEasy() {
+    curQuestion.setToEasy();
   }
 
   public int setQuestionsToStudy(int i) {
@@ -34,6 +62,10 @@ public class QuestionSet {
 
   public int getQuestionsToStudy() {
     return questions.size();
+  }
+
+  public Question getCurQuestion() {
+    return curQuestion;
   }
 
   /**

@@ -21,12 +21,24 @@ public class FileFormatter {
   // I WROTE THESE METHODS FOR PA02 REASONS!!!
   // * * * * * * * * * * * * * * * * * * * * *
 
-  public void setQuestionsToStudy(int i) {
+  void setQuestionsToStudy(int i) {
     quesSet.setQuestionsToStudy(i);
   }
 
-  public int getNumOfQuestions() {
+  int getNumOfQuestions() {
     return quesSet.getQuestionsToStudy();
+  }
+
+  UserData getUserData() {
+    return userData;
+  }
+
+  Question getCurQuestion() {
+    return quesSet.getCurQuestion();
+  }
+
+  void increaseAnswered() {
+    userData.increaseAnswered();
   }
 
   /**

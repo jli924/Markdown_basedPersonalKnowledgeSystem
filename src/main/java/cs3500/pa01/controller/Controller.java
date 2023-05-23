@@ -69,22 +69,17 @@ public class Controller {
     view.welcomeUser();
     // set the number of questions they want to study
     questionsToStudy(sc.next());
-//    for (int i = 0; i < model.fileFormatter.quesSet.questions.size(); i++) {
-//      view.showQuestion(model.nextQuestion());
-//      sc.next();
-//      view.showOptions();
-//      handleUserInput(sc.next());
-//    }
     model.updateNumOfQuestions();
     for (int i = 0; i < model.numOfQuestions; i++) {
       view.showQuestion(model.nextQuestion());
       sc.next();
+      model.increaseAnswered();
       view.showOptions();
       boolean validInput = false;
       while(!validInput) {
         validInput = handleUserInput(sc.next());
       }
     }
-    System.out.println(model.numOfQuestions);
+    view.showStats(model.getUserData());
   }
 }

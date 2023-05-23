@@ -24,6 +24,18 @@ public class UserData {
     this.easyQs = easyQs;
   }
 
+  public void increaseEasyToHard() {
+    easyToHard++;
+  }
+
+  private void increaseHardToEasy() {
+    hardToEasy++;
+  }
+
+  public void increaseAnswered() {
+    answered++;
+  }
+
   /**
    * Converts a user's data back to a string to write to the .sr file
    *

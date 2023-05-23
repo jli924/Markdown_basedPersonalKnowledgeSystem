@@ -81,10 +81,18 @@ public class Model {
   }
 
   public Question getCurQuestion() {
-    return fileFormatter.quesSet.curQuestion;
+    return fileFormatter.getCurQuestion();
+  }
+
+  public UserData getUserData() {
+    return fileFormatter.getUserData();
   }
 
   public void updateNumOfQuestions() {
     numOfQuestions = fileFormatter.getNumOfQuestions();
+  }
+
+  public void increaseAnswered() {
+    fileFormatter.increaseAnswered();
   }
 }
