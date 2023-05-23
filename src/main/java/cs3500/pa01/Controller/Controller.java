@@ -35,6 +35,7 @@ public class Controller {
   public void extractData(String path) {
     Path questionBank = Paths.get(path);
     model.organizeData(questionBank.toFile());
+    // just a comment
   }
 
   public void questionsToStudy(String input) {
