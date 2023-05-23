@@ -1,6 +1,5 @@
 package cs3500.pa01.Model;
 
-import cs3500.pa01.Model.Question;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -13,13 +12,13 @@ public class QuestionSet {
   Question curQuestion;
   Random rand = new Random();
   public int questionsToStudy;
-  int indexOfQuestion = 0;
+  public int indexOfQuestion = 0;
 
   /**
    * Constructor
    */
-  public QuestionSet() {
-
+  public QuestionSet(ArrayList<Question> questions) {
+    this.questions = questions;
   }
 
   /**
@@ -27,6 +26,14 @@ public class QuestionSet {
    */
   public QuestionSet(Random r) {
     rand = r;
+  }
+
+  public int setQuestionsToStudy(int i) {
+    return questionsToStudy = i;
+  }
+
+  public int getQuestionsToStudy() {
+    return questions.size();
   }
 
   /**
@@ -50,14 +57,12 @@ public class QuestionSet {
    *
    * @return the question at that index
    */
-  public void nextQuestion() {
-    if (questionsToStudy > questions.size()) {
-      questionsToStudy = questions.size();
-    }
+  public Question nextQuestion() {
     if (indexOfQuestion <= questionsToStudy) {
       curQuestion = questions.get(indexOfQuestion);
       indexOfQuestion++;
     }
+    return curQuestion;
   }
 
   /**

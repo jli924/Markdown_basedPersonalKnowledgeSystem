@@ -21,14 +21,15 @@ public class FileFormatterPa02Test {
   FileFormatter fileFormatter = new FileFormatter();
   String myQuestion = "[[What is my name? ::: Jamie Li]]";
   String easyQuestion = "[[What color is the sky? ::: Blue (E)]]";
-  Question myName = new Question("What is my name? ", "Jamie Li", true);
-  Question colorOfSky = new Question("What color is the sky? ", "Blue", false);
+  Question myName = new Question("What is my name?", "Jamie Li", true);
+  String whatIsMyName = " What is my name? ";
+  String whatIsMyName2 = "What is my name?";
+  Question colorOfSky = new Question("What color is the sky?", "Blue", false);
   String answered = "> Questions answered: 7";
   String hardToEasy = "> Questions switched from hard to easy: 4";
   String easyToHard = "> Questions switched from easy to hard: 1";
   String hardQs = "> Hard questions: 10";
   String easyQs = "> Easy questions: 3";
-
 
   /**
    * Tests for the extractQuestion method in FileFormatter

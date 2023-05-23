@@ -1,7 +1,6 @@
 package cs3500.pa01.View;
 
 import cs3500.pa01.Model.Question;
-import cs3500.pa01.Model.QuestionSet;
 import cs3500.pa01.Model.UserData;
 import java.io.IOException;
 
@@ -9,7 +8,6 @@ import java.io.IOException;
  * Handles what to show the user
  */
 public class View {
-  QuestionSet quesSet = new QuestionSet();
   public Appendable output;
 
   /**
@@ -21,7 +19,7 @@ public class View {
 
   public void askForFilePath() {
     try {
-      output.append("Please provide a valid file path.");
+      output.append("Please provide a valid file path.\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -34,7 +32,18 @@ public class View {
     try {
       output.append("Welcome!!"
           + "\n"
-          + "How many questions would you like to study today?");
+          + "How many questions would you like to study today?\n");
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /**
+   * Shows the user a question
+   */
+  public void showQuestion(Question question) {
+    try {
+      output.append(question.question + "\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -45,7 +54,7 @@ public class View {
    */
   public void showOptions() {
     try {
-      output.append("Easy(e)  Hard(h)  Show Answer(a)  Exit(x)");
+      output.append("Easy(e)  Hard(h)  Show Answer(a)  Exit(x)\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -58,7 +67,7 @@ public class View {
    */
   public void showAnswer(Question question) {
     try {
-      output.append(question.answer);
+      output.append(question.answer + "\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

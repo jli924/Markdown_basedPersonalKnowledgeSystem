@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * (Deals with headers, important phrases, etc.)
  */
 public class FileFormatter {
-  public QuestionSet quesSet = new QuestionSet();
+  ArrayList<Question> questions = new ArrayList<>();
+  public QuestionSet quesSet = new QuestionSet(questions);
   public UserData userData = new UserData(0, 0, 0, 0, 0);
 
   /**
@@ -20,13 +21,23 @@ public class FileFormatter {
   // I WROTE THESE METHODS FOR PA02 REASONS!!!
   // * * * * * * * * * * * * * * * * * * * * *
 
+  public void setQuestionsToStudy(int i) {
+    quesSet.setQuestionsToStudy(i);
+  }
+
+  public int getNumOfQuestions() {
+    return quesSet.getQuestionsToStudy();
+  }
+
   /**
    * Sets a user's data from a .sr file (their previous stats)
    *
    * @param s the line of stats being read
    */
   public void setUserData(String s) {
-    int data = Integer.parseInt(s.substring(s.indexOf(": ") + 2));;
+    String relevantPhrase = s.replace("\n", "");
+    int data =
+        Integer.parseInt(relevantPhrase.substring(relevantPhrase.indexOf(": ") + 2));
     if (s.startsWith("> Questions answered: ")) {
       userData.answered = data;
     } else if (s.startsWith("> Questions switched from hard to easy: ")) {
@@ -44,6 +55,7 @@ public class FileFormatter {
 
   /**
    * Extracts a question, adding it to a QuestionSet
+   * Needs to be public, so I can test it
    *
    * @param s the question to extract
    *
@@ -54,10 +66,11 @@ public class FileFormatter {
     String answer;
     if (s.contains("[[") && s.contains(":::") && s.contains("]]")) {
       question = s.substring(s.indexOf("[[") + 2, s.indexOf(":::"));
+      question = question.trim();
       answer = s.substring(s.indexOf(":::") + 3, s.indexOf("]]"));
+      answer = answer.trim();
       if (s.contains("(") && s.contains(")")) {
         String difficulty = s.substring(s.indexOf("(") + 1, s.indexOf(")"));
-        System.out.println(difficulty);
         answer = s.substring(s.indexOf(":::") + 3, s.indexOf("("));
         quesSet.addQuestion(
             new Question(question, answer, quesSet.determineDifficulty(difficulty)));
@@ -86,7 +99,7 @@ public class FileFormatter {
     // added line to check for & extract questions
     extractQuestion(s);
     // if not a question, don't extract; go to formatting important info
-    if (s.contains("[[") && s.contains("]]")) {
+    if (s.contains("[[") && s.contains("]]") && !s.contains(":::")) {
       important = important + "- " + s.substring(s.indexOf("[[") + 2, s.indexOf("]]"));
       restofline = s.substring(s.indexOf("]]") + 2);
       if (restofline.contains("[[") && restofline.contains("]]")) {
@@ -110,12 +123,11 @@ public class FileFormatter {
   public ArrayList<String> formatContents(ArrayList<String> contents) {
     // does this need to return something?
 
-    FileFormatter ff = new FileFormatter();
     for (int i = 0; i < contents.size(); i++) {
       if (contents.get(i).startsWith(">")) {
         setUserData(contents.get(i));
       } else if (!contents.get(i).startsWith("#")) {
-        contents.set(i, ff.formatImportantPhrase(contents.get(i)));
+        contents.set(i, formatImportantPhrase(contents.get(i)));
       }
     }
     return contents;

@@ -14,13 +14,13 @@ public class ViewTest {
   Appendable appendable = new StringBuilder();
   View view = new View(appendable);
   Question question =
-      new Question("What is the color of the sky? ", "Blue.", true);
+      new Question("What is the color of the sky?", "Blue.", true);
   UserData stats = new UserData(1, 2, 3, 4, 5);
   String welcomeUser = "Welcome!!"
       + "\n"
-      + "How many questions would you like to study today?";
+      + "How many questions would you like to study today?\n";
 
-  String options = "Easy(e)  Hard(h)  Show Answer(a)  Exit(x)";
+  String options = "Easy(e)  Hard(h)  Show Answer(a)  Exit(x)\n";
   String showStats = "Good Job!" + "\n"
       + "You answered " + 1 + " questions!" + "\n"
       + 2 + " questions went from easy to hard." + "\n"
@@ -29,7 +29,7 @@ public class ViewTest {
       + "Hard questions: " + 4  + "\n"
       + "Easy questions: " + 5 + "\n";
 
-  String askForFilePath = "Please provide a valid file path.";
+  String askForFilePath = "Please provide a valid file path.\n";
 
   /**
    * Tests for the welcomeUser method in View

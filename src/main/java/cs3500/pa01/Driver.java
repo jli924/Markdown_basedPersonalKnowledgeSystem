@@ -26,7 +26,7 @@ public class Driver {
   Path output;
   // where MarkDownFileVisitor will store the md files
   ArrayList<File> files = new ArrayList<>();
-  MarkDownFileVisitor mdfv = new MarkDownFileVisitor();
+  MarkDownFileVisitor mdfv;
   FileIo fio;
   FileFormatter ff;
 

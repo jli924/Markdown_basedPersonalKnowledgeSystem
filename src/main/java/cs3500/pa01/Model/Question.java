@@ -18,4 +18,12 @@ public class Question {
     this.answer = answer;
     this.hard = hard;
   }
+
+  public void setToEasy() {
+      this.hard = false;
+  }
+
+  public void setToHard() {
+    this.hard = true;
+  }
 }

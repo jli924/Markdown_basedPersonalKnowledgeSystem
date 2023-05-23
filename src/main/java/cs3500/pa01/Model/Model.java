@@ -8,12 +8,26 @@ import java.util.ArrayList;
  * Handles functionality
  */
 public class Model {
-  FileIo fileIo = new FileIo();
-  FileFormatter fileFormatter = new FileFormatter();
-  QuestionSet questionSet = new QuestionSet();
+  FileIo fileIo;
+  public FileFormatter fileFormatter;
+  public int numOfQuestions;
 
+  public Model() {
+    fileIo = new FileIo();
+    fileFormatter = new FileFormatter();
+    numOfQuestions = fileFormatter.quesSet.questionsToStudy + 1;
+  }
+
+  /**
+   * Set the number of questions the user wants to study
+   *
+   * @param toStudy the number of questions the user wants to study
+   */
   public void setQuestionsToStudy(int toStudy) {
-    questionSet.questionsToStudy = toStudy;
+    if (toStudy > fileFormatter.getNumOfQuestions()) {
+      toStudy = fileFormatter.getNumOfQuestions() - 1;
+    }
+    fileFormatter.setQuestionsToStudy(toStudy);
   }
 
   /**
@@ -40,5 +54,37 @@ public class Model {
   public void organizeData(File file) {
     ArrayList<String> contents = readSrFile(file);
     fileFormatter.formatContents(contents);
+  }
+
+  /**
+   * Randomize the questions!
+   */
+  public void randomizeQuestions() {
+    fileFormatter.quesSet.randomizeQuestions();
+  }
+
+  /**
+   * Get the next question
+   *
+   * @return the question
+   */
+  public Question nextQuestion() {
+    return fileFormatter.quesSet.nextQuestion();
+  }
+
+  public void switchToEasy() {
+    fileFormatter.quesSet.curQuestion.setToEasy();
+  }
+
+  public void switchToHard() {
+    fileFormatter.quesSet.curQuestion.setToHard();
+  }
+
+  public Question getCurQuestion() {
+    return fileFormatter.quesSet.curQuestion;
+  }
+
+  public void updateNumOfQuestions() {
+    numOfQuestions = fileFormatter.getNumOfQuestions();
   }
 }
