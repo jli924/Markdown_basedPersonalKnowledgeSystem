@@ -14,7 +14,6 @@ public class FileFormatter {
   /**
    * Constructor
    */
-
   public FileFormatter() {
   }
 
