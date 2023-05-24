@@ -89,7 +89,7 @@ public class QuestionSet {
    */
   public int numOfHard() {
     int count = 0;
-    for (Question question: questions) {
+    for (Question question : questions) {
       if (question.isHard()) {
         count++;
       }
@@ -104,7 +104,7 @@ public class QuestionSet {
    */
   public int numOfEasy() {
     int count = 0;
-    for (Question question: questions) {
+    for (Question question : questions) {
       if (!question.isHard()) {
         count++;
       }

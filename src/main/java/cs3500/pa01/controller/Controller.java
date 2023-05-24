@@ -114,6 +114,7 @@ public class Controller {
     model.updateQuestionCount();
     // shows the stats after the user has finished studying
     view.showStats(model.getUserData());
+    // !!! UNCOMMENT BEFORE SUBMITTING !!!
     //model.updateSrFile(srFile);
   }
 }

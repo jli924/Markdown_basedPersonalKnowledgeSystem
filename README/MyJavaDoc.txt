@@ -1,0 +1,51 @@
+Welcome, Grader!!
+You don't have to read this!
+*** indicates the note is a little important...
+
+* -- FORMATTING THE SR FILE: NOTES -- *
+In this folder, you will find an example of my .sr file
+Please format your file like this.
+
+-- STATS
+">" indicates the start of a stat ***
+The only stats that exist are the five listed.
+My example .sr file already has some stats. I'm not sure if you
+will use it to run my program, but if you do, then your stats will be
+added to those stats.
+Any other fake, made up stat that you decide to include will cause
+an exception to be thrown.
+"{ User Stats }" is just a header for the stats, or like a label.
+You don't HAVE to include it, but it does look nice.
+
+-- QUESTIONS (and difficulty)
+Questions, as stated in PA02, must be in double brackets, question and answer
+separated with ":::" whitespace does not matter.
+If you choose to give a question a difficulty, you must do (E) or (H) ***
+after the question's answer.
+Whitespace also does not matter here.
+
+* -- RUNNING THE PROGRAM -- *
+
+-- VALID FILE PATH
+Please enter a valid file path when prompted.
+If you don't, an exception will be thrown and the program will stop.
+No study session for you. If you choose to do this, that's okay, just
+expect the exception.
+I chose to have invalid file paths handled by java.
+
+-- CHOOSING AN OPTION
+Options will show up AFTER you answer a question. You must answer ***
+the question. It doesn't matter what your answer is.
+PLEASE choose a VALID option. If you don't you will be prompted to
+choose again.
+
+* -- OTHER GENERAL NOTES -- *
+
+FileFormatter is a PA01 class, many methods were added in order to ***
+implement PA02 while also reusing PA01 code/methods. You should probably
+grade the methods that I added (I indicated which ones are new/adjusted).
+
+-- TESTING
+Many of my methods call other methods, so sometimes there is no reason to
+test them. But I have tried/have covered them all. ("have" if I remember to
+come back and update this file)
