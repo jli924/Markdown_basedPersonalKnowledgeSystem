@@ -23,30 +23,52 @@ public class Controller {
   public Controller() {
     this.input = new InputStreamReader(System.in);
     this.output = new OutputStreamWriter(System.out);
-
   }
 
+  /**
+   * Extracts data from the .sr file
+   * Data being: the user's data/stats and questions
+   *
+   * @param path to the .sr file
+   */
   public void extractData(String path) {
     Path questionBank = Paths.get(path);
     model.organizeData(questionBank.toFile());
   }
 
+  /**
+   * To set the number of questions the user wants to study
+   * Throws an exception if input is not a valid number
+   *
+   * @param input the user's input (how many questions they want to study)
+   */
   public void questionsToStudy(String input) {
     model.setQuestionsToStudy(Integer.parseInt(input));
   }
 
+  /**
+   * To handle user input (of options)
+   *
+   * @param input the user's input
+   *
+   * @return whether the user's input is valid
+   */
   public boolean handleUserInput(String input) {
     if (input.equals("e")) {
+      // switches a question to easy
       model.switchToEasy();
       return true;
     } else if (input.equals("h")) {
+      // switches a question to hard
       model.switchToHard();
       return true;
     } else if (input.equals("a")) {
+      // shows the answer to a question
       view.showAnswer(model.getCurQuestion());
       return true;
     } else if (input.equals("x")) {
-      view.showStats(model.fileFormatter.userData);
+      // exits the study session, shows the stats
+      view.showStats(model.getUserData());
       return true;
     } else {
       System.out.println("Not a valid option. Please select again.");
@@ -55,31 +77,38 @@ public class Controller {
   }
 
   /**
-   * To start the study session
+   * To run the study session
    */
   public void run() {
     Scanner sc = new Scanner(this.input);
     // ask user to provide file path: exception will be thrown if path is not valid
     view.askForFilePath();
     // read file & extract questions and user data
-    extractData(sc.next());
+    extractData(sc.nextLine());
     // randomize those questions now in the QuestionSet
     model.randomizeQuestions();
     // welcome user & ask for # of questions
     view.welcomeUser();
     // set the number of questions they want to study
-    questionsToStudy(sc.next());
-    model.updateNumOfQuestions();
+    questionsToStudy(sc.nextLine());
+    // this loop, for the number of questions the user chooses...
     for (int i = 0; i < model.numOfQuestions; i++) {
+      // will show the question
       view.showQuestion(model.nextQuestion());
-      sc.next();
+      // user, you must answer!
+      sc.nextLine();
+      System.out.println(model.fileFormatter.quesSet.getCurQuestion().isHard());
+      // increase stat: answered questions
       model.increaseAnswered();
+      // show options after user answers
       view.showOptions();
+      // this loop handles the input after the options are shown
       boolean validInput = false;
       while(!validInput) {
-        validInput = handleUserInput(sc.next());
+        validInput = handleUserInput(sc.nextLine());
       }
     }
+    // shows the stats after the user has finished studying
     view.showStats(model.getUserData());
   }
 }

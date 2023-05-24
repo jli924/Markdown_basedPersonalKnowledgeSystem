@@ -21,26 +21,6 @@ public class QuestionSet {
     this.questions = questions;
   }
 
-  public int numOfEasy() {
-    int count = 0;
-    for (int i = 0; i < questions.size(); i++) {
-      if (!questions.get(i).hard) {
-        count++;
-      }
-    }
-    return count;
-  }
-
-  public int numOfHard() {
-    int count = 0;
-    for (int i = 0; i < questions.size(); i++) {
-      if (questions.get(i).hard) {
-        count++;
-      }
-    }
-    return count;
-  }
-
   /**
    * Constructor with seeded random
    */
@@ -48,22 +28,52 @@ public class QuestionSet {
     rand = r;
   }
 
+  /**
+   * Sets the current question to hard
+   */
   public void setQuestionToHard() {
     curQuestion.setToHard();
   }
 
+  /**
+   * Sets the current question to easy
+   */
   public void setQuestionToEasy() {
     curQuestion.setToEasy();
   }
 
-  public int setQuestionsToStudy(int i) {
-    return questionsToStudy = i;
+  /**
+   * Gets the number of questions the user wants to study
+   *
+   * @return number of question to study
+   */
+  public int getQuestionsToStudy() {
+    return questionsToStudy;
   }
 
-  public int getQuestionsToStudy() {
+  /**
+   * Sets the number of questions to study based on user input
+   *
+   * @return the number of questions to study
+   */
+  public int setQuestionsToStudy(int input) {
+    return questionsToStudy = input;
+  }
+
+  /**
+   * Gets the number of questions
+   *
+   * @return the number of questions
+   */
+  public int numOfQuestions() {
     return questions.size();
   }
 
+  /**
+   * Gets the current question
+   *
+   * @return the current question
+   */
   public Question getCurQuestion() {
     return curQuestion;
   }
@@ -78,7 +88,7 @@ public class QuestionSet {
   }
 
   /**
-   * Randomizes the questions in the array list
+   * Randomizes the questions in the array list of questions
    */
   public void randomizeQuestions() {
     Collections.shuffle(questions, rand);
@@ -105,6 +115,7 @@ public class QuestionSet {
    * @return a boolean (the difficulty)
    */
   public boolean determineDifficulty(String difficulty) {
+    difficulty.trim();
     if (difficulty.equals("E")) {
       return false;
     } else if (difficulty.equals("H")) {

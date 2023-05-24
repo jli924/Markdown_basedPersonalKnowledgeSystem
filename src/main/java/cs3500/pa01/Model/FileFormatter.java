@@ -25,8 +25,16 @@ public class FileFormatter {
     quesSet.setQuestionsToStudy(i);
   }
 
-  int getNumOfQuestions() {
+  int getQuestionsToStudy() {
     return quesSet.getQuestionsToStudy();
+  }
+
+  Question nextQuestion() {
+    return quesSet.nextQuestion();
+  }
+
+  int numOfQuestions() {
+    return quesSet.numOfQuestions();
   }
 
   UserData getUserData() {
@@ -41,12 +49,18 @@ public class FileFormatter {
     userData.increaseAnswered();
   }
 
-  void increaseEasyToHard() {
-    userData.increaseEasyToHard();
+  void setQuestionToEasy() {
+    if (quesSet.getCurQuestion().isHard()) {
+      userData.increaseHardToEasy();
+    }
+    quesSet.setQuestionToEasy();
   }
 
-  void increaseHardToEasy() {
-    userData.increaseHardToEasy();
+  void setQuestionToHard() {
+    if (!quesSet.getCurQuestion().isHard()) {
+      userData.increaseEasyToHard();
+    }
+    quesSet.setQuestionToHard();
   }
 
   /**

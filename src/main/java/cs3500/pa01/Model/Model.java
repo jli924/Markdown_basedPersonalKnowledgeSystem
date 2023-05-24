@@ -12,10 +12,12 @@ public class Model {
   public FileFormatter fileFormatter;
   public int numOfQuestions;
 
+  /**
+   * Constructor
+   */
   public Model() {
     fileIo = new FileIo();
     fileFormatter = new FileFormatter();
-    numOfQuestions = fileFormatter.quesSet.questionsToStudy + 1;
   }
 
   /**
@@ -24,10 +26,11 @@ public class Model {
    * @param toStudy the number of questions the user wants to study
    */
   public void setQuestionsToStudy(int toStudy) {
-    if (toStudy > fileFormatter.getNumOfQuestions()) {
-      toStudy = fileFormatter.getNumOfQuestions() - 1;
+    if (toStudy > fileFormatter.numOfQuestions()) {
+      toStudy = fileFormatter.numOfQuestions() - 1;
     }
     fileFormatter.setQuestionsToStudy(toStudy);
+    numOfQuestions = fileFormatter.getQuestionsToStudy();
   }
 
   /**
@@ -69,47 +72,45 @@ public class Model {
    * @return the question
    */
   public Question nextQuestion() {
-    return fileFormatter.quesSet.nextQuestion();
+    return fileFormatter.nextQuestion();
+  }
+
+  /**
+   * Get the current question
+   *
+   * @return the current question
+   */
+  public Question getCurQuestion() {
+    return fileFormatter.getCurQuestion();
+  }
+
+  /**
+   * Get the user's data/stats
+   *
+   * @return the user's data
+   */
+  public UserData getUserData() {
+    return fileFormatter.getUserData();
+  }
+
+  /**
+   * Increase the amount of questions answered
+   */
+  public void increaseAnswered() {
+    fileFormatter.increaseAnswered();
   }
 
   /**
    * Switch a question to easy
    */
   public void switchToEasy() {
-    fileFormatter.quesSet.curQuestion.setToEasy();
+    fileFormatter.setQuestionToEasy();
   }
 
   /**
    * Switch a question to hard
    */
   public void switchToHard() {
-    fileFormatter.quesSet.curQuestion.setToHard();
-  }
-
-  /**
-   * Get the current question
-   */
-  public Question getCurQuestion() {
-    return fileFormatter.getCurQuestion();
-  }
-
-  public UserData getUserData() {
-    return fileFormatter.getUserData();
-  }
-
-  public void updateNumOfQuestions() {
-    numOfQuestions = fileFormatter.getNumOfQuestions();
-  }
-
-  public void increaseAnswered() {
-    fileFormatter.increaseAnswered();
-  }
-
-  public void increaseEasyToHard() {
-    fileFormatter.increaseEasyToHard();
-  }
-
-  public void increaseHardToEasy() {
-    fileFormatter.increaseHardToEasy();
+    fileFormatter.setQuestionToHard();
   }
 }

@@ -8,7 +8,7 @@ public class Question {
   public String answer;
   // difficulty is (H) or (E)
   String difficulty;
-  boolean hard;
+  private boolean hard;
 
   /**
    * Constructor
@@ -25,5 +25,9 @@ public class Question {
 
   public void setToHard() {
     this.hard = true;
+  }
+
+  public boolean isHard() {
+    return hard;
   }
 }
