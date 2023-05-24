@@ -1,4 +1,4 @@
-package cs3500.pa01.Model;
+package cs3500.pa01.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +38,7 @@ public class Model {
    *
    * @param file the file to read
    *
-   * @return the string of contents read
+   * @return the array list of strings of contents read
    */
   public ArrayList<String> readSrFile(File file) {
     try {

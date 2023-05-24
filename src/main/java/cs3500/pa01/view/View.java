@@ -1,7 +1,7 @@
-package cs3500.pa01.View;
+package cs3500.pa01.view;
 
-import cs3500.pa01.Model.Question;
-import cs3500.pa01.Model.UserData;
+import cs3500.pa01.model.Question;
+import cs3500.pa01.model.UserData;
 import java.io.IOException;
 
 /**
@@ -17,6 +17,9 @@ public class View {
     this.output = output;
   }
 
+  /**
+   * Asks the user for a path to the question bank (.sr file)
+   */
   public void askForFilePath() {
     try {
       output.append("Please provide a valid file path.\n");

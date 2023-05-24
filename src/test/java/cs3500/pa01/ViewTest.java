@@ -2,9 +2,9 @@ package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import cs3500.pa01.Model.Question;
-import cs3500.pa01.Model.UserData;
-import cs3500.pa01.View.View;
+import cs3500.pa01.model.Question;
+import cs3500.pa01.model.UserData;
+import cs3500.pa01.view.View;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -16,8 +16,7 @@ public class ViewTest {
   Question question =
       new Question("What is the color of the sky?", "Blue.", true);
   UserData stats = new UserData(1, 2, 3, 4, 5);
-  String welcomeUser = "Welcome!!"
-      + "\n"
+  String welcomeUser = "Welcome!!\n"
       + "How many questions would you like to study today?\n";
 
   String options = "Easy(e)  Hard(h)  Show Answer(a)  Exit(x)\n";
@@ -64,7 +63,7 @@ public class ViewTest {
   @Test
   public void testShowAnswer() {
     view.showAnswer(question);
-    assertEquals(question.answer, view.output.toString());
+    assertEquals(question.answer + "\n", view.output.toString());
   }
 
   /**

@@ -3,8 +3,8 @@ package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import cs3500.pa01.Model.FileFormatter;
-import cs3500.pa01.Model.Question;
+import cs3500.pa01.model.FileFormatter;
+import cs3500.pa01.model.Question;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -22,8 +22,6 @@ public class FileFormatterPa02Test {
   String myQuestion = "[[What is my name? ::: Jamie Li]]";
   String easyQuestion = "[[What color is the sky? ::: Blue (E)]]";
   Question myName = new Question("What is my name?", "Jamie Li", true);
-  String whatIsMyName = " What is my name? ";
-  String whatIsMyName2 = "What is my name?";
   Question colorOfSky = new Question("What color is the sky?", "Blue", false);
   String answered = "> Questions answered: 7";
   String hardToEasy = "> Questions switched from hard to easy: 4";

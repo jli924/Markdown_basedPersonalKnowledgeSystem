@@ -1,4 +1,4 @@
-package cs3500.pa01.Model;
+package cs3500.pa01.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,11 +53,9 @@ public class QuestionSet {
 
   /**
    * Sets the number of questions to study based on user input
-   *
-   * @return the number of questions to study
    */
-  public int setQuestionsToStudy(int input) {
-    return questionsToStudy = input;
+  public void setQuestionsToStudy(int input) {
+    questionsToStudy = input;
   }
 
   /**
@@ -115,7 +113,6 @@ public class QuestionSet {
    * @return a boolean (the difficulty)
    */
   public boolean determineDifficulty(String difficulty) {
-    difficulty.trim();
     if (difficulty.equals("E")) {
       return false;
     } else if (difficulty.equals("H")) {

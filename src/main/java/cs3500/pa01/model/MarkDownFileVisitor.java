@@ -1,8 +1,8 @@
-package cs3500.pa01.Model;
+package cs3500.pa01.model;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
 
-import cs3500.pa01.OrderingFlag.OrderingFlag;
+import cs3500.pa01.orderingflag.OrderingFlag;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

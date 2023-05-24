@@ -19,8 +19,7 @@ public class Main {
     Controller controller = new Controller();
     if (args.length == 0) {
       controller.run();
-    }
-    else if (args.length == 3) {
+    } else if (args.length == 3) {
       Path i;
       Path o;
       // to ensure that args 0 and 2 are valid paths

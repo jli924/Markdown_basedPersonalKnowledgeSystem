@@ -1,7 +1,7 @@
 package cs3500.pa01.controller;
 
-import cs3500.pa01.Model.Model;
-import cs3500.pa01.View.View;
+import cs3500.pa01.model.Model;
+import cs3500.pa01.view.View;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
@@ -104,7 +104,7 @@ public class Controller {
       view.showOptions();
       // this loop handles the input after the options are shown
       boolean validInput = false;
-      while(!validInput) {
+      while (!validInput) {
         validInput = handleUserInput(sc.nextLine());
       }
     }

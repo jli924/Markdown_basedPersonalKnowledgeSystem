@@ -1,4 +1,4 @@
-package cs3500.pa01.Model;
+package cs3500.pa01.model;
 
 import java.util.ArrayList;
 
@@ -21,42 +21,73 @@ public class FileFormatter {
   // I WROTE THESE METHODS FOR PA02 REASONS!!!
   // * * * * * * * * * * * * * * * * * * * * *
 
+  /**
+   * Sets the number of questions the user wants to study
+   */
   void setQuestionsToStudy(int i) {
     quesSet.setQuestionsToStudy(i);
   }
 
+  /**
+   * Gets the number of questions the user wants to study
+   */
   int getQuestionsToStudy() {
     return quesSet.getQuestionsToStudy();
   }
 
+  /**
+   * Gets the next question in a question set
+   */
   Question nextQuestion() {
     return quesSet.nextQuestion();
   }
 
+  /**
+   * Gets the total number of questions in a question set
+   */
   int numOfQuestions() {
     return quesSet.numOfQuestions();
   }
 
+  /**
+   * Gets the user's data
+   *
+   * @return a UserData object, with all the user's data
+   */
   UserData getUserData() {
     return userData;
   }
 
+  /**
+   * Gets the current question from the QuestionSet
+   */
   Question getCurQuestion() {
     return quesSet.getCurQuestion();
   }
 
+  /**
+   * Increases the number of questions answered by 1
+   */
   void increaseAnswered() {
     userData.increaseAnswered();
   }
 
+  /**
+   * Sets a question to easy if it isn't already
+   */
   void setQuestionToEasy() {
     if (quesSet.getCurQuestion().isHard()) {
+      // increases count if it is a new change
       userData.increaseHardToEasy();
     }
     quesSet.setQuestionToEasy();
   }
 
+  /**
+   * Sets a question to hard if it isn't already
+   */
   void setQuestionToHard() {
+    // increases count if it is a new change
     if (!quesSet.getCurQuestion().isHard()) {
       userData.increaseEasyToHard();
     }
@@ -98,22 +129,24 @@ public class FileFormatter {
   public String extractQuestion(String s) {
     String question;
     String answer;
-    if (s.contains("[[") && s.contains(":::") && s.contains("]]")) {
+    // if a question already has a difficulty, set it
+    if (s.contains("[[") && s.contains(":::")
+        && s.contains("]]") && s.contains("(") && s.contains(")")) {
+      String difficulty = s.substring(s.indexOf("(") + 1, s.indexOf(")"));
       question = s.substring(s.indexOf("[[") + 2, s.indexOf(":::"));
-      question = question.trim();
+      answer = s.substring(s.indexOf(":::") + 3, s.indexOf("("));
+      quesSet.addQuestion(
+          new Question(question.trim(), answer.trim(),
+              quesSet.determineDifficulty(difficulty.trim())));
+      // otherwise, default difficulty is true
+    } else if (s.contains("[[") && s.contains(":::") && s.contains("]]")) {
+      question = s.substring(s.indexOf("[[") + 2, s.indexOf(":::"));
       answer = s.substring(s.indexOf(":::") + 3, s.indexOf("]]"));
-      answer = answer.trim();
-      if (s.contains("(") && s.contains(")")) {
-        String difficulty = s.substring(s.indexOf("(") + 1, s.indexOf(")"));
-        answer = s.substring(s.indexOf(":::") + 3, s.indexOf("("));
-        answer.trim();
-        quesSet.addQuestion(
-            new Question(question, answer, quesSet.determineDifficulty(difficulty)));
-      }
       // the last boolean is whether a question is hard,
       // default value is true.
-      quesSet.addQuestion(new Question(question, answer, true));
+      quesSet.addQuestion(new Question(question.trim(), answer.trim(), true));
     }
+    // return nothing because questions do not go to the .md file
     return "";
   }
   // * * * * * * * * * * * * * * * *
@@ -127,7 +160,6 @@ public class FileFormatter {
    * @param s phrase that needs to have an important phrase extracted
    * @return the important phrase (without double brackets)
    */
-
   public String formatImportantPhrase(String s) {
     String important = "";
     String restofline;
@@ -154,7 +186,6 @@ public class FileFormatter {
    * @param contents the contents of a file as an array list of strings
    * @return the formatted file contents as an array list of strings
    */
-
   public ArrayList<String> formatContents(ArrayList<String> contents) {
     // does this need to return something?
 

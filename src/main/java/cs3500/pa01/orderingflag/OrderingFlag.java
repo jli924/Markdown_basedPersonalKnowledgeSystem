@@ -1,4 +1,4 @@
-package cs3500.pa01.OrderingFlag;
+package cs3500.pa01.orderingflag;
 
 import java.io.File;
 import java.util.ArrayList;

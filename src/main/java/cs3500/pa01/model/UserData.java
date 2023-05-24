@@ -1,4 +1,4 @@
-package cs3500.pa01.Model;
+package cs3500.pa01.model;
 
 /**
  * Represents a user's data

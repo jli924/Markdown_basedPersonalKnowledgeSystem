@@ -1,4 +1,4 @@
-package cs3500.pa01.View;
+package cs3500.pa01.view;
 
 import java.io.IOException;
 import java.nio.CharBuffer;

@@ -3,8 +3,8 @@ package cs3500.pa01;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import cs3500.pa01.OrderingFlag.Created;
-import cs3500.pa01.OrderingFlag.OrderingFlag;
+import cs3500.pa01.orderingflag.Created;
+import cs3500.pa01.orderingflag.OrderingFlag;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

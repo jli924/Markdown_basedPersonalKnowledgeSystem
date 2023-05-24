@@ -1,4 +1,4 @@
-package cs3500.pa01.Model;
+package cs3500.pa01.model;
 
 /**
  * To represent a question
@@ -6,8 +6,7 @@ package cs3500.pa01.Model;
 public class Question {
   public String question;
   public String answer;
-  // difficulty is (H) or (E)
-  String difficulty;
+  // difficulty is (H) or (E) in a .sr file
   private boolean hard;
 
   /**
@@ -20,7 +19,7 @@ public class Question {
   }
 
   public void setToEasy() {
-      this.hard = false;
+    this.hard = false;
   }
 
   public void setToHard() {
