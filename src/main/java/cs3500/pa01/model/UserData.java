@@ -25,6 +25,20 @@ public class UserData {
   }
 
   /**
+   * Updates the number of easy questions
+   */
+  public void updateEasyQs(int count) {
+    easyQs = count;
+  }
+
+  /**
+   * Updates the number of hard questions
+   */
+  public void updateHardQs(int count) {
+    hardQs = count;
+  }
+
+  /**
    * Increases count of the number of questions switched from easy to hard
    */
   public void increaseEasyToHard() {
@@ -51,7 +65,8 @@ public class UserData {
    * @return a string of the data
    */
   public String toString() {
-    return "> Questions answered: " + answered + "\n"
+    return "{ User Stats } \n"
+        + "> Questions answered: " + answered + "\n"
         + "> Questions switched from easy to hard: " + easyToHard + "\n"
         + "> Questions switched from hard to easy: " + hardToEasy + "\n"
         + "> Hard questions: " + hardQs + "\n"

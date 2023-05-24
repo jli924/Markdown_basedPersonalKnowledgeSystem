@@ -34,7 +34,7 @@ public class ViewTest {
    * Tests for the welcomeUser method in View
    */
   @Test
-  public void testProvideFile() {
+  public void testAskForFilePath() {
     view.askForFilePath();
     assertEquals(askForFilePath, view.output.toString());
   }
@@ -46,6 +46,15 @@ public class ViewTest {
   public void testWelcomeUser() {
     view.welcomeUser();
     assertEquals(welcomeUser, view.output.toString());
+  }
+
+  /**
+   * Tests for the showQuestion method in View
+   */
+  @Test
+  public void testShowQuestion() {
+    view.showQuestion(question);
+    assertEquals(question.question + "\n", view.output.toString());
   }
 
   /**

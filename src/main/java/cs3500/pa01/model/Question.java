@@ -11,11 +11,28 @@ public class Question {
 
   /**
    * Constructor
+   *
+   * @param question the question as a string
+   * @param answer the answer as a string
+   * @param hard whether the question is hard
    */
   public Question(String question, String answer, boolean hard) {
     this.question = question;
     this.answer = answer;
     this.hard = hard;
+  }
+
+  /**
+   * Converts a question back to a string to write back to the .sr file
+   *
+   * @return a string with the formatted question, including difficulty
+   */
+  public String toString() {
+    if (hard) {
+      return "[[" + question + " ::: " + answer + " (E)]]\n";
+    } else {
+      return "[[" + question + " ::: " + answer + " (H)]]\n";
+    }
   }
 
   /**

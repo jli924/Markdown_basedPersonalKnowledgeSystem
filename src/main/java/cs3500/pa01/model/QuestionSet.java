@@ -29,6 +29,19 @@ public class QuestionSet {
   }
 
   /**
+   * Converts a QuestionSet back to a string to write back to the .sr file
+   *
+   * @return a string with the formatted questions
+   */
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    for (Question question: questions) {
+      sb.append(question.toString());
+    }
+    return sb.toString();
+  }
+
+  /**
    * Sets the current question to hard
    */
   public void setQuestionToHard() {
@@ -65,6 +78,36 @@ public class QuestionSet {
    */
   public int numOfQuestions() {
     return questions.size();
+  }
+
+  /**
+   * Counts the number of hard questions
+   *
+   * @return the number of hard questions
+   */
+  int numOfHard() {
+    int count = 0;
+    for (Question question: questions) {
+      if (question.isHard()) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  /**
+   * Counts the number of easy questions
+   *
+   * @return the number of easy questions
+   */
+  int numOfEasy() {
+    int count = 0;
+    for (Question question: questions) {
+      if (!question.isHard()) {
+        count++;
+      }
+    }
+    return count;
   }
 
   /**

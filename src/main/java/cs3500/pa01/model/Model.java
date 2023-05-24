@@ -27,7 +27,7 @@ public class Model {
    */
   public void setQuestionsToStudy(int toStudy) {
     if (toStudy > fileFormatter.numOfQuestions()) {
-      toStudy = fileFormatter.numOfQuestions() - 1;
+      toStudy = fileFormatter.numOfQuestions();
     }
     fileFormatter.setQuestionsToStudy(toStudy);
     numOfQuestions = fileFormatter.getQuestionsToStudy();
@@ -112,5 +112,24 @@ public class Model {
    */
   public void switchToHard() {
     fileFormatter.setQuestionToHard();
+  }
+
+  /**
+   * Updates the count of hard and easy questions in the user's data
+   */
+  public void updateQuestionCount() {
+    fileFormatter.updateHardAndEasyQs();
+  }
+
+  /**
+   * Updates the user's data on the .sr file and writes the questions back
+   *
+   * @param file the user's .sr file
+   */
+  public void updateSrFile(File file) {
+    StringBuilder sb = new StringBuilder();
+    sb.append(fileFormatter.questionSetToString());
+    sb.append(fileFormatter.getUserData().toString());
+    fileIo.writeToFile(file, sb.toString());
   }
 }

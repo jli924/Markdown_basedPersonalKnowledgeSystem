@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class FileFormatter {
   ArrayList<Question> questions = new ArrayList<>();
   public QuestionSet quesSet = new QuestionSet(questions);
-  public UserData userData = new UserData(0, 0, 0, 0, 0);
+  public UserData userData =
+      new UserData(0, 0, 0, 0, 0);
 
   /**
    * Constructor
@@ -19,6 +20,24 @@ public class FileFormatter {
 
   // I WROTE THESE METHODS FOR PA02 REASONS!!!
   // * * * * * * * * * * * * * * * * * * * * *
+
+  /**
+   * Converts a QuestionSet back to a string to write back to the .sr file
+   *
+   * @return a string with the formatted questions
+   */
+  String questionSetToString() {
+    return quesSet.toString();
+  }
+
+  /**
+   * Converts UserData back to a string to write back to the .sr file
+   *
+   * @return a string with the user's stats
+   */
+  String userDataToString() {
+    return userData.toString();
+  }
 
   /**
    * Sets the number of questions the user wants to study
@@ -72,6 +91,14 @@ public class FileFormatter {
   }
 
   /**
+   * Updates the number of easy and hard questions in UserData
+   */
+  void updateHardAndEasyQs() {
+    userData.updateEasyQs(quesSet.numOfEasy());
+    userData.updateHardQs(quesSet.numOfHard());
+  }
+
+  /**
    * Sets a question to easy if it isn't already
    */
   void setQuestionToEasy() {
@@ -97,8 +124,10 @@ public class FileFormatter {
    * Sets a user's data from a .sr file (their previous stats)
    *
    * @param s the line of stats being read
+   *
+   * @return an empty string so it is not written to the .md file
    */
-  public void setUserData(String s) {
+  public String setUserData(String s) {
     String relevantPhrase = s.replace("\n", "");
     int data =
         Integer.parseInt(relevantPhrase.substring(relevantPhrase.indexOf(": ") + 2));
@@ -115,6 +144,7 @@ public class FileFormatter {
     } else {
       throw new IllegalArgumentException("You didn't format that properly...");
     }
+    return "";
   }
 
   /**

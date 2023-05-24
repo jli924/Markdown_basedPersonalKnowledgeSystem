@@ -2,6 +2,7 @@ package cs3500.pa01.controller;
 
 import cs3500.pa01.model.Model;
 import cs3500.pa01.view.View;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
@@ -9,13 +10,14 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * Handles user input & what to output
+ * Handles user input and what to output
  */
 public class Controller {
   Model model = new Model();
   View view = new View(System.out);
   final Readable input;
   final Appendable output;
+  File srFile;
 
   /**
    * Constructor
@@ -33,6 +35,7 @@ public class Controller {
    */
   public void extractData(String path) {
     Path questionBank = Paths.get(path);
+    srFile = questionBank.toFile();
     model.organizeData(questionBank.toFile());
   }
 
@@ -97,7 +100,6 @@ public class Controller {
       view.showQuestion(model.nextQuestion());
       // user, you must answer!
       sc.nextLine();
-      System.out.println(model.fileFormatter.quesSet.getCurQuestion().isHard());
       // increase stat: answered questions
       model.increaseAnswered();
       // show options after user answers
@@ -108,7 +110,10 @@ public class Controller {
         validInput = handleUserInput(sc.nextLine());
       }
     }
+    // update the number of hard and easy questions after a user has studied
+    model.updateQuestionCount();
     // shows the stats after the user has finished studying
     view.showStats(model.getUserData());
+    //model.updateSrFile(srFile);
   }
 }
