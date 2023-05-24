@@ -18,14 +18,23 @@ public class Question {
     this.hard = hard;
   }
 
+  /**
+   * Sets a question's difficulty to easy (false)
+   */
   public void setToEasy() {
     this.hard = false;
   }
 
+  /**
+   * Sets a question's difficulty to hard (true)
+   */
   public void setToHard() {
     this.hard = true;
   }
 
+  /**
+   * Returns true if a question is hard
+   */
   public boolean isHard() {
     return hard;
   }

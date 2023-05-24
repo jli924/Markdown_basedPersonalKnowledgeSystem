@@ -24,14 +24,23 @@ public class UserData {
     this.easyQs = easyQs;
   }
 
+  /**
+   * Increases count of the number of questions switched from easy to hard
+   */
   public void increaseEasyToHard() {
     easyToHard++;
   }
 
+  /**
+   * Increases count of the number of questions switched from hard to easy
+   */
   public void increaseHardToEasy() {
     hardToEasy++;
   }
 
+  /**
+   * Increases count of the number of questions answered
+   */
   public void increaseAnswered() {
     answered++;
   }
