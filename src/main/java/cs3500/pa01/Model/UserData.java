@@ -28,7 +28,7 @@ public class UserData {
     easyToHard++;
   }
 
-  private void increaseHardToEasy() {
+  public void increaseHardToEasy() {
     hardToEasy++;
   }
 

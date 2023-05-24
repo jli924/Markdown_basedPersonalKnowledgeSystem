@@ -41,6 +41,14 @@ public class FileFormatter {
     userData.increaseAnswered();
   }
 
+  void increaseEasyToHard() {
+    userData.increaseEasyToHard();
+  }
+
+  void increaseHardToEasy() {
+    userData.increaseHardToEasy();
+  }
+
   /**
    * Sets a user's data from a .sr file (their previous stats)
    *
@@ -84,6 +92,7 @@ public class FileFormatter {
       if (s.contains("(") && s.contains(")")) {
         String difficulty = s.substring(s.indexOf("(") + 1, s.indexOf(")"));
         answer = s.substring(s.indexOf(":::") + 3, s.indexOf("("));
+        answer.trim();
         quesSet.addQuestion(
             new Question(question, answer, quesSet.determineDifficulty(difficulty)));
       }
@@ -96,7 +105,7 @@ public class FileFormatter {
   // * * * * * * * * * * * * * * * *
   // END OF METHODS WRITTEN FOR PA02 (in this PA01 file)
 
-  // HASN'T BEEN TOUCHED SINCE PA01
+  // BELOW HASN'T BEEN TOUCHED SINCE PA01
   /**
    * If a String contains double brackets, format the important phrase
    * within properly: meaning, add a bullet and remove brackets
@@ -136,8 +145,8 @@ public class FileFormatter {
     // does this need to return something?
 
     for (int i = 0; i < contents.size(); i++) {
-      if (contents.get(i).startsWith(">")) {
-        setUserData(contents.get(i));
+      if (contents.get(i).startsWith(">")) { // added this line
+        setUserData(contents.get(i)); // and this line for PA02
       } else if (!contents.get(i).startsWith("#")) {
         contents.set(i, formatImportantPhrase(contents.get(i)));
       }

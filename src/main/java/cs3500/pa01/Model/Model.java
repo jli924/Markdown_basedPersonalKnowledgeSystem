@@ -72,14 +72,23 @@ public class Model {
     return fileFormatter.quesSet.nextQuestion();
   }
 
+  /**
+   * Switch a question to easy
+   */
   public void switchToEasy() {
     fileFormatter.quesSet.curQuestion.setToEasy();
   }
 
+  /**
+   * Switch a question to hard
+   */
   public void switchToHard() {
     fileFormatter.quesSet.curQuestion.setToHard();
   }
 
+  /**
+   * Get the current question
+   */
   public Question getCurQuestion() {
     return fileFormatter.getCurQuestion();
   }
@@ -94,5 +103,13 @@ public class Model {
 
   public void increaseAnswered() {
     fileFormatter.increaseAnswered();
+  }
+
+  public void increaseEasyToHard() {
+    fileFormatter.increaseEasyToHard();
+  }
+
+  public void increaseHardToEasy() {
+    fileFormatter.increaseHardToEasy();
   }
 }
