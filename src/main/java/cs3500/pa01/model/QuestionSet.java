@@ -8,7 +8,7 @@ import java.util.Random;
  * To represent a set of questions
  */
 public class QuestionSet {
-  public ArrayList<Question> questions = new ArrayList<>();
+  public ArrayList<Question> questions;
   Question curQuestion;
   Random rand = new Random();
   public int questionsToStudy;
@@ -22,10 +22,12 @@ public class QuestionSet {
   }
 
   /**
-   * Constructor with seeded random
+   * Constructor with seeded random for testing
    */
-  public QuestionSet(Random r) {
-    rand = r;
+  public QuestionSet(Random r, ArrayList<Question> questions) {
+    this.rand = r;
+    this.questions = questions;
+    this.curQuestion = questions.get(indexOfQuestion);
   }
 
   /**
@@ -35,7 +37,7 @@ public class QuestionSet {
    */
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    for (Question question: questions) {
+    for (Question question : questions) {
       sb.append(question.toString());
     }
     return sb.toString();
@@ -85,7 +87,7 @@ public class QuestionSet {
    *
    * @return the number of hard questions
    */
-  int numOfHard() {
+  public int numOfHard() {
     int count = 0;
     for (Question question: questions) {
       if (question.isHard()) {
@@ -100,7 +102,7 @@ public class QuestionSet {
    *
    * @return the number of easy questions
    */
-  int numOfEasy() {
+  public int numOfEasy() {
     int count = 0;
     for (Question question: questions) {
       if (!question.isHard()) {

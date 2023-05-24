@@ -29,9 +29,9 @@ public class Question {
    */
   public String toString() {
     if (hard) {
-      return "[[" + question + " ::: " + answer + " (E)]]\n";
-    } else {
       return "[[" + question + " ::: " + answer + " (H)]]\n";
+    } else {
+      return "[[" + question + " ::: " + answer + " (E)]]\n";
     }
   }
 
