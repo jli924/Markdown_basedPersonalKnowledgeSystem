@@ -1,6 +1,7 @@
 package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import cs3500.pa01.model.Question;
 import cs3500.pa01.model.UserData;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
  * Tests for the View class
  */
 public class ViewTest {
+  Appendable brokenAppendable = new BrokenAppendable();
+  View brokenView = new View(brokenAppendable);
   Appendable appendable = new StringBuilder();
   View view = new View(appendable);
   Question question =
@@ -37,6 +40,7 @@ public class ViewTest {
   public void testAskForFilePath() {
     view.askForFilePath();
     assertEquals(askForFilePath, view.output.toString());
+    assertThrows(RuntimeException.class, () -> brokenView.askForFilePath());
   }
 
   /**
@@ -46,6 +50,7 @@ public class ViewTest {
   public void testWelcomeUser() {
     view.welcomeUser();
     assertEquals(welcomeUser, view.output.toString());
+    assertThrows(RuntimeException.class, () -> brokenView.welcomeUser());
   }
 
   /**
@@ -55,6 +60,7 @@ public class ViewTest {
   public void testShowQuestion() {
     view.showQuestion(question);
     assertEquals(question.question + "\n", view.output.toString());
+    assertThrows(RuntimeException.class, () -> brokenView.showQuestion(question));
   }
 
   /**
@@ -64,6 +70,7 @@ public class ViewTest {
   public void testShowOptions() {
     view.showOptions();
     assertEquals(options, view.output.toString());
+    assertThrows(RuntimeException.class, () -> brokenView.showOptions());
   }
 
   /**
@@ -73,6 +80,7 @@ public class ViewTest {
   public void testShowAnswer() {
     view.showAnswer(question);
     assertEquals(question.answer + "\n", view.output.toString());
+    assertThrows(RuntimeException.class, () -> brokenView.showAnswer(question));
   }
 
   /**
@@ -82,5 +90,6 @@ public class ViewTest {
   public void testShowStats() {
     view.showStats(stats);
     assertEquals(showStats, view.output.toString());
+    assertThrows(RuntimeException.class, () -> brokenView.showStats(stats));
   }
 }

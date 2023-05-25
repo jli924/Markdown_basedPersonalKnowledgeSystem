@@ -129,6 +129,7 @@ public class Model {
   public void updateSrFile(File file) {
     StringBuilder sb = new StringBuilder();
     sb.append(fileFormatter.questionSetToString());
+    sb.append("\n");
     sb.append(fileFormatter.getUserData().toString());
     fileIo.writeToFile(file, sb.toString());
   }

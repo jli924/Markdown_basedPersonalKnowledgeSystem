@@ -17,23 +17,26 @@ import org.junit.jupiter.api.Test;
  * it an actual class...
  */
 public class ModelTest {
+  Path questionBank = Path.of("README/QuestionBank.sr");
+  Path updatedSrFile = Path.of("README/UpdatedSrFile.sr");
+  Path expectedSrFile = Path.of("README/UpdatedSrFileExpectedResult.sr");
   Model model = new Model();
   Question myName = new Question("What is my name?", "Jamie Li", false);
   Question petsHuh =
       new Question("Do I have pets?", "No, but I used to", true);
   File fake = Path.of("fake file").toFile();
-  String cats = "[[Are cats or dogs better? ::: Cats]]";
-  String sky = "[[What is the color of the sky? ::: Blue (E)]]";
-  String neu = "[[What is the name of our university? ::: Northeastern]]";
-  String future = "[[What does the future look like? ::: Nobody knows... (H)]]";
-  String statsHeader = "{ User Stats }";
-  String answered = "> Questions answered: 1";
-  String easyToHard = "> Questions switched from easy to hard: 2";
-  String hardToEasy = "> Questions switched from hard to easy: 3";
-  String hard = "> Hard questions: 4";
-  String easy = "> Easy questions: 5";
-  ArrayList<String> contents = new ArrayList<>(Arrays.asList(cats, sky, neu, future, statsHeader,
-      answered, easyToHard, hardToEasy, hard, easy));
+  String cats = "[[Are cats or dogs better? ::: Cats]]\n";
+  String sky = "[[What is the color of the sky? ::: Blue (E)]]\n";
+  String neu = "[[What is the name of our university? ::: Northeastern]]\n";
+  String future = "[[What does the future look like? ::: Nobody knows... (H)]]\n";
+  String statsHeader = "{ User Stats }\n";
+  String answered = "> Questions answered: 1\n";
+  String easyToHard = "> Questions switched from easy to hard: 2\n";
+  String hardToEasy = "> Questions switched from hard to easy: 3\n";
+  String hard = "> Hard questions: 4\n";
+  String easy = "> Easy questions: 5\n";
+  ArrayList<String> contents = new ArrayList<>(Arrays.asList(cats, sky, neu, future, "\n",
+      statsHeader, answered, easyToHard, hardToEasy, hard, easy, "\n"));
   Question catsVsDogs =
       new Question("Are cats or dogs better?", "Cats", true);
   Question skyColor =
@@ -45,7 +48,7 @@ public class ModelTest {
   ArrayList<Question> questions = new ArrayList<>(Arrays.asList(catsVsDogs, skyColor,
       northeastern, theFuture));
   ArrayList<Question> noQuestions = new ArrayList<>();
-  String userStats = "{ User Stats } \n"
+  String userStats = "{ User Stats }\n"
       + "> Questions answered: " + 1 + "\n"
       + "> Questions switched from easy to hard: " + 2 + "\n"
       + "> Questions switched from hard to easy: " + 3 + "\n"
@@ -72,6 +75,7 @@ public class ModelTest {
    */
   @Test
   public void testReadSrFile() {
+    assertEquals(contents, model.readSrFile(questionBank.toFile()));
     assertThrows(RuntimeException.class, () -> model.readSrFile(fake));
   }
 
@@ -80,13 +84,13 @@ public class ModelTest {
    */
   @Test
   public void testOrganizeData() {
-    model.fileFormatter.formatContents(contents);
+    model.organizeData(questionBank.toFile());
     assertEquals(userStats, model.getUserData().toString());
     assertEquals(questions.toString(), model.fileFormatter.quesSet.questions.toString());
   }
 
   /**
-   * To test the randomizeQuestions method in QuestionSet
+   * To test the randomizeQuestions method in Model
    */
   @Test
   public void testRandomizeQuestions() {
@@ -94,6 +98,85 @@ public class ModelTest {
     assertEquals(noQuestions, model.fileFormatter.quesSet.questions);
   }
 
-  // most of model's methods are just calling other methods, therefore there
-  // is no need to test them again
+  /**
+   * To test the nextQuestion method in Model
+   */
+  @Test
+  public void testNextQuestions() {
+    model.organizeData(questionBank.toFile());
+    assertEquals(catsVsDogs.toString(), model.nextQuestion().toString());
+  }
+
+  /**
+   * To test the getCurQuestion method in Model
+   */
+  @Test
+  public void testGetCurQuestion() {
+    model.organizeData(questionBank.toFile());
+    model.nextQuestion();
+    assertEquals(catsVsDogs.toString(), model.getCurQuestion().toString());
+  }
+
+  /**
+   * To test the getUserData method in Model
+   */
+  @Test
+  public void testGetUserData() {
+    model.organizeData(questionBank.toFile());
+    assertEquals(userStats, model.getUserData().toString());
+  }
+
+  /**
+   * To test the increaseAnswered method in Model
+   */
+  @Test
+  public void testIncreaseAnswered() {
+    model.increaseAnswered();
+    assertEquals(1, model.getUserData().answered);
+  }
+
+  /**
+   * To test the switchToEasy method in Model
+   */
+  @Test
+  public void testSwitchToEasy() {
+    model.organizeData(questionBank.toFile());
+    model.nextQuestion();
+    model.switchToEasy();
+    assertEquals(4, model.getUserData().hardToEasy);
+  }
+
+  /**
+   * To test the switchToHard method in Model
+   */
+  @Test
+  public void testSwitchToHard() {
+    model.organizeData(questionBank.toFile());
+    model.nextQuestion();
+    model.switchToHard();
+    assertEquals(2, model.getUserData().easyToHard);
+  }
+
+  /**
+   * To test the updateQuestionCount method in Model
+   */
+  @Test
+  public void testUpdateQuestionCount() {
+    model.organizeData(questionBank.toFile());
+    model.updateQuestionCount();
+    assertEquals(3, model.getUserData().hardQs);
+    assertEquals(1, model.getUserData().easyQs);
+  }
+
+  /**
+   * To test the updateSrFile method in Model
+   */
+  @Test
+  public void testUpdateSrFile() {
+    model.readSrFile(questionBank.toFile());
+    model.organizeData(questionBank.toFile());
+    model.updateSrFile(updatedSrFile.toFile());
+    assertEquals(model.readSrFile(expectedSrFile.toFile()),
+        model.readSrFile(updatedSrFile.toFile()));
+  }
 }

@@ -65,7 +65,7 @@ public class UserData {
    * @return a string of the data
    */
   public String toString() {
-    return "{ User Stats } \n"
+    return "{ User Stats }\n"
         + "> Questions answered: " + answered + "\n"
         + "> Questions switched from easy to hard: " + easyToHard + "\n"
         + "> Questions switched from hard to easy: " + hardToEasy + "\n"
