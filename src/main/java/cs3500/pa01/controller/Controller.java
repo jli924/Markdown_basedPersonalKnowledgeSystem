@@ -4,7 +4,6 @@ import cs3500.pa01.model.Model;
 import cs3500.pa01.view.View;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -17,7 +16,6 @@ public class Controller {
   public Model model;
   View view;
   final Readable input;
-  final Appendable output;
   File srFile;
 
   /**
@@ -27,7 +25,13 @@ public class Controller {
     this.model = new Model();
     this.view = new View(System.out);
     this.input = new InputStreamReader(System.in);
-    this.output = new OutputStreamWriter(System.out);
+  }
+
+  /**
+   * Generates a .sr file from a study guide
+   */
+  public File getGenerateSrFile() {
+    return model.generateSrFile();
   }
 
   /**
@@ -60,7 +64,6 @@ public class Controller {
    * To handle user input (of options)
    *
    * @param input the user's input
-   *
    * @return whether the user's input is valid
    */
   public boolean handleUserInput(String input) {

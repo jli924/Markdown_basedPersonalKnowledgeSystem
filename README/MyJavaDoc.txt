@@ -2,6 +2,12 @@ Welcome, Grader!!
 You don't have to read this!
 *** indicates the note is a little important...
 
+* -- THREE ARGS (PA01) -- *
+I know there will be no double jeopardy, my PA01 did not generate an output
+file because it threw an exception, so as you may expect this project will not
+produce an output file for three args. However, my program does separate .sr
+file contents and .md file contents.
+
 * -- FORMATTING THE SR FILE: NOTES -- *
 In this folder, you will find an example of my .sr file
 Please format your file like this.

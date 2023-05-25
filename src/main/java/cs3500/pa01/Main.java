@@ -36,6 +36,7 @@ public class Main {
       Driver driver = new Driver(args[0], args[1], args[2]);
       driver.walkFileTree(i);
       driver.createFinalStudyGuide(o);
+      controller.getGenerateSrFile();
     } else {
       throw new IllegalArgumentException("Invalid number of arguments.");
     }

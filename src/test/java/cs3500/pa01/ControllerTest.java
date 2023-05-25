@@ -1,10 +1,13 @@
 package cs3500.pa01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import cs3500.pa01.controller.Controller;
 import cs3500.pa01.model.UserData;
+import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,8 +15,17 @@ import org.junit.jupiter.api.Test;
  */
 public class ControllerTest {
   Controller controller = new Controller();
+  Path yourQuestionBank = Path.of("README/YourQuestionBank.sr");
   String pathToQuestionBank = "README/QuestionBank.sr";
   UserData stats = new UserData(1, 2, 3, 4, 5);
+
+  /**
+   * To test the generateSrFile method in Controller
+   */
+  @Test
+  public void testGenerateSrFile() {
+    assertEquals(yourQuestionBank.toFile(), controller.getGenerateSrFile());
+  }
 
   /**
    * To test the extractData method in Controller
@@ -22,15 +34,6 @@ public class ControllerTest {
   public void testExtractData() {
     controller.extractData(pathToQuestionBank);
     assertEquals(stats.toString(), controller.model.getUserData().toString());
-  }
-
-  /**
-   * To test the handleUserInput method in Controller
-   */
-  @Test
-  public void testHandleUserInput() {
-    assertEquals(3, controller.model.fileFormatter.quesSet.getQuestionsToStudy());
-    assertEquals(4, controller.model.fileFormatter.quesSet.getQuestionsToStudy());
   }
 
   /**
@@ -44,5 +47,21 @@ public class ControllerTest {
     controller.questionsToStudy("5");
     assertEquals(4, controller.model.fileFormatter.quesSet.getQuestionsToStudy());
     assertThrows(IllegalArgumentException.class, () -> controller.questionsToStudy("-1"));
+  }
+
+  /**
+   * To test the handleUserInput method in Controller
+   */
+  @Test
+  public void testHandleUserInput() {
+    controller.extractData(pathToQuestionBank);
+    controller.model.nextQuestion();
+    // true will not prompt the user to answer again, false will
+    assertTrue(controller.handleUserInput("e"));
+    assertTrue(controller.handleUserInput("h"));
+    assertTrue(controller.handleUserInput("a"));
+    assertTrue(controller.handleUserInput("x"));
+    assertFalse(controller.handleUserInput("k"));
+    assertFalse(controller.handleUserInput("hello"));
   }
 }

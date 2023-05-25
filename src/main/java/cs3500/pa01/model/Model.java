@@ -133,4 +133,13 @@ public class Model {
     sb.append(fileFormatter.getUserData().toString());
     fileIo.writeToFile(file, sb.toString());
   }
+
+  /**
+   * Generates a .sr file from a study guide
+   */
+  public File generateSrFile() {
+    File questionBank = new File("README/YourQuestionBank.sr");
+    updateSrFile(questionBank);
+    return questionBank;
+  }
 }

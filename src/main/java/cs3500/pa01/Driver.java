@@ -106,6 +106,7 @@ public class Driver {
    * @return an array list of array list of string (all the sorted files' contents)
    */
   public ArrayList<ArrayList<String>> listOfFileContents() throws FileNotFoundException {
+    MarkDownFileVisitor mdfv = new MarkDownFileVisitor(files, orderingflag);
     ArrayList<ArrayList<String>> allcontents = new ArrayList<>();
     for (File f : mdfv.getSortedList()) {
       allcontents.add(fio.fileContents(f));

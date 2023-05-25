@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
  * it an actual class...
  */
 public class ModelTest {
+  Path yourQuestionBank = Path.of("README/YourQuestionBank.sr");
   Path questionBank = Path.of("README/QuestionBank.sr");
   Path updatedSrFile = Path.of("README/UpdatedSrFile.sr");
   Path expectedSrFile = Path.of("README/UpdatedSrFileExpectedResult.sr");
@@ -178,5 +179,13 @@ public class ModelTest {
     model.updateSrFile(updatedSrFile.toFile());
     assertEquals(model.readSrFile(expectedSrFile.toFile()),
         model.readSrFile(updatedSrFile.toFile()));
+  }
+
+  /**
+   * To test the generateSrFile method in Model
+   */
+  @Test
+  public void testGenerateSrFile() {
+    assertEquals(yourQuestionBank.toFile(), model.generateSrFile());
   }
 }
