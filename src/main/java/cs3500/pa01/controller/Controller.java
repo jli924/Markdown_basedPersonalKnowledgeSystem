@@ -30,7 +30,7 @@ public class Controller {
   /**
    * Generates a .sr file from a study guide
    */
-  public File getGenerateSrFile() {
+  public File generateSrFile() {
     return model.generateSrFile();
   }
 
