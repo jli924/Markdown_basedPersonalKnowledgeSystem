@@ -9,13 +9,8 @@ import org.junit.jupiter.api.Test;
 
 /**
  * To test the methods in the FileFormatter class for PA02:
- * *
- * I added a method named extractQuestion which
- * would extract questions from a file the user provides
- * instead of adding it to a study guide
- * *
- * This class is to test that one method and keep it
- * separate from PA01 tests, so you don't get confused!
+ * Many of FileFormatter's methods have already been tested in PA01,
+ * or for PA02, in ModelTest
  */
 public class FileFormatterPa02Test {
   FileFormatter fileFormatter = new FileFormatter();

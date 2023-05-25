@@ -13,8 +13,9 @@ import java.util.Scanner;
  * Handles user input and what to output
  */
 public class Controller {
-  Model model = new Model();
-  View view = new View(System.out);
+  // sadly I had to make this public for testing.
+  public Model model;
+  View view;
   final Readable input;
   final Appendable output;
   File srFile;
@@ -23,6 +24,8 @@ public class Controller {
    * Constructor
    */
   public Controller() {
+    this.model = new Model();
+    this.view = new View(System.out);
     this.input = new InputStreamReader(System.in);
     this.output = new OutputStreamWriter(System.out);
   }
@@ -46,7 +49,11 @@ public class Controller {
    * @param input the user's input (how many questions they want to study)
    */
   public void questionsToStudy(String input) {
-    model.setQuestionsToStudy(Integer.parseInt(input));
+    if (Integer.parseInt(input) < 0) {
+      throw new IllegalArgumentException("You cannot study this number of questions.");
+    } else {
+      model.setQuestionsToStudy(Integer.parseInt(input));
+    }
   }
 
   /**
