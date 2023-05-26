@@ -28,13 +28,6 @@ public class Controller {
   }
 
   /**
-   * Generates a .sr file from a study guide
-   */
-  public File generateSrFile() {
-    return model.generateSrFile();
-  }
-
-  /**
    * Extracts data from the .sr file
    * Data being: the user's data/stats and questions
    *

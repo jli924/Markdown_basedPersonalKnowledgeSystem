@@ -111,10 +111,6 @@ public class FileFormatter {
     quesSet.setQuestionToHard();
   }
 
-  public String getSrContents() {
-    return questionSetToString();
-  }
-
   /**
    * Sets a user's data from a .sr file (their previous stats)
    *
@@ -171,7 +167,6 @@ public class FileFormatter {
       quesSet.addQuestion(new Question(question.trim(), answer.trim(), true));
     }
     // return nothing because questions do not go to the .md file
-    System.out.println(quesSet.toString());
     return "";
   }
   // * * * * * * * * * * * * * * * *
