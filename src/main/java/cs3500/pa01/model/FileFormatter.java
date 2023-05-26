@@ -26,17 +26,8 @@ public class FileFormatter {
    *
    * @return a string with the formatted questions
    */
-  String questionSetToString() {
+  public String questionSetToString() {
     return quesSet.toString();
-  }
-
-  /**
-   * Converts UserData back to a string to write back to the .sr file
-   *
-   * @return a string with the user's stats
-   */
-  String userDataToString() {
-    return userData.toString();
   }
 
   /**
@@ -72,7 +63,7 @@ public class FileFormatter {
    *
    * @return a UserData object, with all the user's data
    */
-  UserData getUserData() {
+  public UserData getUserData() {
     return userData;
   }
 
@@ -118,6 +109,10 @@ public class FileFormatter {
       userData.increaseEasyToHard();
     }
     quesSet.setQuestionToHard();
+  }
+
+  public String getSrContents() {
+    return questionSetToString();
   }
 
   /**
@@ -176,6 +171,7 @@ public class FileFormatter {
       quesSet.addQuestion(new Question(question.trim(), answer.trim(), true));
     }
     // return nothing because questions do not go to the .md file
+    System.out.println(quesSet.toString());
     return "";
   }
   // * * * * * * * * * * * * * * * *

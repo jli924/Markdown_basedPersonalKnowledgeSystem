@@ -4,9 +4,6 @@ package cs3500.pa01.model;
  * Represents a user's data
  */
 public class UserData {
-  // how will I store UserData in my .sr file?
-  // { User Stats }
-  // read? write back to file?
   public int answered;
   public int easyToHard;
   public int hardToEasy;

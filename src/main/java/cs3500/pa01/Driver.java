@@ -29,8 +29,6 @@ public class Driver {
   MarkDownFileVisitor mdfv;
   FileIo fio;
   FileFormatter ff;
-
-  // these were made for TESTING REASONS
   OrderingFlag fn;
   OrderingFlag mod;
   OrderingFlag cr;
@@ -39,31 +37,30 @@ public class Driver {
    * Constructor to use in main
    */
   public Driver(String args0, String args1, String args2) {
+    fn = new FileName();
+    mod = new Modified();
+    cr = new Created();
     notesroot = Paths.get(args0);
     orderingflag = toOrderingFlag(args1);
     output = Paths.get(args2);
     mdfv = new MarkDownFileVisitor(files, orderingflag);
     fio = new FileIo();
     ff = new FileFormatter();
-    fn = new FileName();
-    mod = new Modified();
-    cr = new Created();
-
   }
 
   /**
    * Constructor to initialize data
    */
   public Driver(Path nr, OrderingFlag of, Path o) {
+    fn = new FileName();
+    mod = new Modified();
+    cr = new Created();
     notesroot = nr;
     orderingflag = of;
     output = o;
     mdfv = new MarkDownFileVisitor(files, orderingflag);
     fio = new FileIo();
     ff = new FileFormatter();
-    fn = new FileName();
-    mod = new Modified();
-    cr = new Created();
   }
 
   /**
@@ -150,6 +147,28 @@ public class Driver {
       }
     }
     return sb.toString();
+  }
+
+  /**
+   * Generates a .sr file from the .md file
+   *
+   * @param file a .sr file with questions and user data
+   */
+  public void updateSrFile(File file) {
+    StringBuilder sb = new StringBuilder();
+    sb.append(ff.questionSetToString());
+    sb.append("\n");
+    sb.append(ff.getUserData().toString());
+    fio.writeToFile(file, sb.toString());
+  }
+
+  /**
+   * Generates a .sr file from a study guide
+   */
+  public File generateSrFile() {
+    File questionBank = new File("README/YourQuestionBank.sr");
+    updateSrFile(questionBank);
+    return questionBank;
   }
 
   /**

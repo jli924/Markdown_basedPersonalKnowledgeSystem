@@ -32,15 +32,6 @@ public class ControllerTest {
   }
 
   /**
-   * To test the generateSrFile method in Controller
-   */
-  @Test
-  public void testGenerateSrFile() {
-    initData();
-    assertEquals(yourQuestionBank.toFile(), controller.generateSrFile());
-  }
-
-  /**
    * To test the extractData method in Controller
    */
   @Test

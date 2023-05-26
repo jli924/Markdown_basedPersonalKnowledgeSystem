@@ -25,6 +25,7 @@ class DriverTest {
   OrderingFlag of;
   Path dir;
   File output;
+  Path yourQuestionBank;
   ArrayList<File> files;
   MarkDownFileVisitor mdfv;
   Driver driver;
@@ -49,6 +50,7 @@ class DriverTest {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+    yourQuestionBank = Path.of("README/YourQuestionBank.sr");
     dir = Path.of("src/test/resources/sampleFiles");
     of = new Modified();
     mdfv = new MarkDownFileVisitor(files, of);
@@ -75,6 +77,15 @@ class DriverTest {
         + "- but I am!\n"
         + "\n"
         + "# Hello\n";
+  }
+
+  /**
+   * To test the generateSrFile method in Driver
+   */
+  @Test
+  public void testGenerateSrFile() {
+    initData();
+    assertEquals(yourQuestionBank.toFile(), driver.generateSrFile());
   }
 
   @Test
